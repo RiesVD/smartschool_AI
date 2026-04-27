@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Analysis Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="analysis_tool.css">
 </head>
 <body>
     <div class="container">
         <button class="trigger-button">
-            <img src="logo_and_icon_brand_kit_nl/Module iconen/analytics_512x512.png" alt="Analytics" class="button-icon">
+            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
             <span>View Results</span>
         </button>
 
@@ -18,70 +23,72 @@
             <div class="analysis-view" id="analysisView">
                 <div class="popout-header">
                     <div class="datetime" id="datetime"></div>
-
-                    <div class="select-block">
-                        <label for="languageSelect" class="dropdown-label" id="languageLabel">Select language</label>
-                        <select id="languageSelect" class="language-dropdown">
-                            <option value="nl">Nederlands (Default)</option>
-                            <option value="en">English</option>
-                            <option value="fr">Français</option>
-                        </select>
-                    </div>
-
-                    <div class="select-block">
-                        <label for="subjectSelect" class="dropdown-label" id="subjectLabel">Select subject</label>
-                        <select id="subjectSelect" class="subject-dropdown">
-                            <option value="">Select Subject</option>
-                            <option value="math">Math</option>
-                            <option value="english">English</option>
-                            <option value="geography">Geography</option>
-                            <option value="science">Science</option>
-                            <option value="history">History</option>
-                            <option value="physics">Physics</option>
-                            <option value="chemistry">Chemistry</option>
-                        </select>
+                    <div class="header-selects">
+                        <div class="select-block">
+                            <label for="languageSelect" class="dropdown-label" id="languageLabel">Language</label>
+                            <select id="languageSelect" class="language-dropdown">
+                                <option value="nl">Nederlands (Default)</option>
+                                <option value="en">English</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                        <div class="select-block">
+                            <label for="subjectSelect" class="dropdown-label" id="subjectLabel">Subject</label>
+                            <select id="subjectSelect" class="subject-dropdown">
+                                <option value="">Select Subject</option>
+                                <option value="math">Math</option>
+                                <option value="english">English</option>
+                                <option value="geography">Geography</option>
+                                <option value="science">Science</option>
+                                <option value="history">History</option>
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="progress-section">
-                    <div class="progress-label">Overall Performance</div>
-                    <div class="progress-container">
-                        <canvas id="progressCanvas" width="180" height="180"></canvas>
+                <div class="popout-body">
+                    <div class="progress-section">
+                        <canvas id="progressCanvas" width="100" height="100"></canvas>
                         <div class="progress-info">
-                            <div class="percentage-text" id="percentageText">0%</div>
-                            <div class="performance-descriptor" id="performanceDescriptor">—</div>
+                            <div class="progress-label">Overall Performance</div>
+                            <div class="percentage-text" id="percentageText">—</div>
+                            <div class="performance-descriptor" id="performanceDescriptor">No Data</div>
                         </div>
                     </div>
-                </div>
 
-                <div class="analysis-content">
-                    <div class="test-results-section">
-                        <h3 class="test-results-title">📝 Test Results</h3>
-                        <div class="test-results-list" id="testResultsList"></div>
+                    <div class="analysis-content">
+                        <div class="card">
+                            <div class="card-title">
+                                <span>📝</span> Test Results
+                            </div>
+                            <div class="test-results-list" id="testResultsList"></div>
+                        </div>
+
+                        <div class="upcoming-assignments-section">
+                            <div class="assignments-header-container" id="assignmentsToggleContainer">
+                                <div class="assignments-header" id="upcomingHeaderText">📅 Upcoming</div>
+                                <button class="assignments-toggle" id="assignmentsToggle">
+                                    <span class="toggle-arrow">▼</span>
+                                </button>
+                            </div>
+                            <div class="upcoming-assignments-content" id="upcomingAssignmentsContent">
+                                <div class="assignments-description" id="upcomingDescription">Enter expected results to see your potential average</div>
+                                <div class="upcoming-assignments-list" id="upcomingAssignmentsList"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="upcoming-assignments-section">
-                        <div class="assignments-header-container">
-                            <div class="assignments-header">📅 Upcoming Tests & Assignments</div>
-                            <button class="assignments-toggle" id="assignmentsToggle">
-                                <span class="toggle-arrow">▼</span>
-                            </button>
-                        </div>
-                        <div class="upcoming-assignments-content" id="upcomingAssignmentsContent">
-                            <div class="assignments-description">Enter expected results to see your potential average</div>
-                            <div class="upcoming-assignments-list" id="upcomingAssignmentsList"></div>
-                        </div>
+                    <div class="tips-section">
+                        <div class="tips-header" id="tipsHeader">💡 Improvement Tips</div>
+                        <div class="feedback-container" id="feedbackContainer"></div>
                     </div>
-                </div>
 
-                <div class="tips-section">
-                    <div class="tips-header">💡 Improvement Tips</div>
-                    <div class="feedback-container" id="feedbackContainer"></div>
-                </div>
-
-                <div class="button-group-vertical">
-                    <button class="analyze-button" id="analyzeBtn">Analyze</button>
-                    <button class="compare-button" id="compareBtn">Compare Subjects</button>
+                    <div class="button-group-vertical">
+                        <button class="analyze-button" id="analyzeBtn">Analyze</button>
+                        <button class="compare-button" id="compareBtn">Compare Subjects</button>
+                    </div>
                 </div>
             </div>
 
@@ -96,7 +103,6 @@
             </div>
         </div>
     </div>
-
     <script src="analysis_tool.js"></script>
 </body>
 </html>

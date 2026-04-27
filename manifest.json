@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "Student Analysis Tool",
+    "version": "1.0",
+    "description": "Analyse je studieresultaten",
+    "action": {
+        "default_popup": "analysis_tool.html",
+        "default_icon": "icon.png"
+    }
+}
